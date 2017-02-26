@@ -65,6 +65,17 @@ class Add(Node):
         for n in self.inbound_nodes:
             self.value += n.value
 
+class Mul(Node):
+    # You may need to change this...
+    def __init__(self, *inputs):
+        Node.__init__(self, inputs)
+
+    def forward(self):
+        self.value = self.value if self.value is not None else 1
+
+        for n in self.inbound_nodes:
+            self.value *= n.value
+
 
 def topological_sort(feed_dict):
     """
